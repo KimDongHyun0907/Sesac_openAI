@@ -16,4 +16,4 @@
 15일차 (1/16) - [API 실습](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%EB%B0%8F%20%EC%8B%9C%EA%B0%81%ED%99%94/open%20API%20%ED%99%9C%EC%9A%A9)  
 16일차 (1/17) - [크롤링](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%EB%B0%8F%20%EC%8B%9C%EA%B0%81%ED%99%94/%ED%81%AC%EB%A1%A4%EB%A7%81)  
 17일차 (1/18) - [네이버 api 활용](https://github.com/KimDongHyun0907/Sesac_openAI/blob/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%EB%B0%8F%20%EC%8B%9C%EA%B0%81%ED%99%94/open%20API%20%ED%99%9C%EC%9A%A9/api%20%ED%99%9C%EC%9A%A9%20%EB%AF%B8%EC%85%98%201%EC%9B%94%2018%EC%9D%BC.ipynb), [html](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML), [정적 웹 크롤링](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/%ED%81%AC%EB%A1%A4%EB%A7%81)  
-18일차 (1/19)
+18일차 (1/19) - [크롤링 표테이블](https://github.com/KimDongHyun0907/Sesac_openAI/blob/main/HTML/%ED%81%AC%EB%A1%A4%EB%A7%81/3.%20%ED%81%AC%EB%A1%A4%EB%A7%81%20select%20%EA%B8%B0%EC%B4%88%EB%B6%80%ED%84%B0%20_.ipynb)
