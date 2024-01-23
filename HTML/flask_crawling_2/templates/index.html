@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>flask basic</title>
+</head>
+<body>
+    <h1>대문 페이지</h1>
+
+    <ul>
+        {% for item in datas %}
+            <li>
+                <p>이름 : {{item['name']}}</p>
+                <p>레벨 : {{item['level']}}</p>
+                <p>포인트 : {{item['point']}}</p>
+                <p>경험지 : {{item['exp']}}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
