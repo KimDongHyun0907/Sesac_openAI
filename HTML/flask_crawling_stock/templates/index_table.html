@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>index_table</title>
+</head>
+<body>
+    <h1>표 테이블</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>제공처</th>
+                <th>최종일자</th>
+                <th>목표가</th>
+                <th>직전목표가</th>
+                <th>변동률(%)</th>
+                <th>투자의견</th>
+                <th>직전투자의견</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in datas %}
+                <tr>
+                    <td>{{item['제공처']}}</td>
+                    <td>{{item['최종일자']}}</td>
+                    <td>{{item['목표가']}}</td>
+                    <td>{{item['직전목표가']}}</td>
+                    <td>{{item['변동률(%)']}}</td>
+                    <td>{{item['투자의견']}}</td>
+                    <td>{{item['직전투자의견']}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
