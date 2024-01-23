@@ -1,12 +1,17 @@
 from flask import Flask, render_template
+import pandas as pd
 
 app = Flask(__name__)
 
-datas = [
-        {'name': '반원', 'level': 60, 'point': 360, 'exp' : 45000},
-        {'name': '반원2', 'level': 2, 'point': 20, 'exp' : 200},
-        {'name': '반원3', 'level': 3, 'point': 30, 'exp' : 300}
-    ]
+# datas = [
+#         {'name': '반원', 'level': 60, 'point': 360, 'exp' : 45000},
+#         {'name': '반원2', 'level': 2, 'point': 20, 'exp' : 200},
+#         {'name': '반원3', 'level': 3, 'point': 30, 'exp' : 300}
+#     ]
+
+datas = pd.read_csv('data/data.csv', encoding='cp949')
+datas = datas.to_dict(orient='records')
+
 @app.route('/')
 def index():
     return render_template('index.html', datas = datas)
