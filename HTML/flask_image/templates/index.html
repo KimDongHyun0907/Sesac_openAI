@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* 배경색 약간 회색으로 설정 */
+            font-family: Arial, sans-serif;
+            text-align: center; /* 전체 텍스트를 가운데 정렬 */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* 제목과 이미지 그리드 사이 간격 조절 */
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* 가운데 정렬 */
+        }
+
+        .image-grid img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover; /* 이미지 비율 유지하면서 자르기 */
+            border-radius: 8px; /* 이미지에 둥근 모서리 적용 */
+        }
+
+        /* 반응형 웹을 위한 미디어 쿼리 */
+        @media screen and (max-width: 600px) {
+            .image-grid img {
+                width: 100%; /* 작은 화면에서는 이미지를 100%로 표시 */
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Grid</h1>
+
+    <div class="image-grid">
+        {% for row in image_grid %}
+            <div style="display: flex; gap: 10px;">
+                {% for image_path in row %}
+                    <div>
+                        <img src="{{ image_path }}" alt="Image">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
