@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>index_table</title>
+</head>
+<body>
+    <h1>표 그리기</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>레벨</th>
+                <th>포인트</th>
+                <th>경험지</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in datas %}
+            <tr>
+                <td>{{item['name']}}</td>
+                <td>{{item['level']}}</td>
+                <td>{{item['point']}}</td>
+                <td>{{item['exp']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
