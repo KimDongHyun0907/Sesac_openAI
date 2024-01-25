@@ -22,3 +22,4 @@
 19일차 (1/22) - [구글 티처블머신](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/teachable%20machine), [flask 실습](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/flask)  
 20일차 (1/23) - [Flask 실습, SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/flask)  
 21일차 (1/24) - [SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/SQL)  
+22일차 (1/25) - [SQLite](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/SQLite)  
