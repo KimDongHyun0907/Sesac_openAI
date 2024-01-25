@@ -21,3 +21,4 @@
 18일차 (1/19) - [크롤링 표테이블](https://github.com/KimDongHyun0907/Sesac_openAI/blob/main/HTML/%ED%81%AC%EB%A1%A4%EB%A7%81/3.%20%ED%81%AC%EB%A1%A4%EB%A7%81%20select%20%EA%B8%B0%EC%B4%88%EB%B6%80%ED%84%B0%20_.ipynb)  
 19일차 (1/22) - [구글 티처블머신](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/teachable%20machine), [flask 실습](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/flask)  
 20일차 (1/23) - [Flask 실습, SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/flask)  
+21일차 (1/24) - [SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/SQL)  
