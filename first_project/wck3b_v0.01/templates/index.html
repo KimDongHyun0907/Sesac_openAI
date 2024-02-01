@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대문 페이지</title>
+    <title>Main Page</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: url("{{ url_for('static', filename='images/Lighted_soccer_stadium_at_night_soccer_ball_pla.jpg') }}") no-repeat center center fixed;
+            background: url("{{ url_for('static', filename='images/san-siro-2430650_1920.jpg') }}") no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;  /* 폰트 설정 (선택) */
             color: #ffffff;  /* 텍스트 색상 설정 (선택) */
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);  /* Adjust the alpha value to control the darkness */
         }
         .content {
             position: absolute;
@@ -25,30 +34,73 @@
             height: auto;
             max-width: 100vw;  /* 이미지가 뷰포트의 100%를 넘지 않도록 설정 */
         }
-        .button-container {
+
+        .main_title{
+            width: 20vw;
+            text-align: left;
+            margin: 0 auto;
+            font-size: 3em;
+            display: inline-block;
+        }
+        .title_logo{
+            width: 25%;
+            display: inline-block;
+            padding-right: 10%;
+            padding-top: 20%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn{
+            font-size: 35px;
+            padding: 15px 30px;
+            border: 3px solid gold;
+            background-color: transparent;
+            color: gold;
+            letter-spacing: 5px;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+
+        .btn:focus{
+            outline: none;
+        }
+        
+        .btn::before{
+            content: "";
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            height:100%;
+            width: 100%;
+            background-color: gold;
+            top: 100%;
+            left: 0;
+            transition: all 0.4s;
+            z-index: -1;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50; /* 버튼 배경색 (선택) */
-            color: #ffffff; /* 버튼 텍스트 색상 (선택) */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+
+        .btn:hover::before {
+            transform: translateY(-100%);
         }
+
+        .btn:hover{
+            color: blue
+        }
+
     </style>
 </head>
 <body>
     <div class="content">
         <!-- 기존 내용을 .content로 감싸줍니다. -->
-        <img src="{{ url_for('static', filename='images/월클_김삼백_로고2-removebg-preview.png') }}" alt="대문 이미지">
-    </div>
-    <div class="button-container">
+        <div class="title_logo">
+            <img src="{{url_for('static', filename='images/football-player-landing-on-field-missing-the-ball.png')}}" alt="soccer_player">
+        </div>
+        <div class="main_title">
+            <h1>WORLD CLASS KIM3BAEK</h1>
+        </div>
         <form action="{{ url_for('image_input') }}" method="get">
-            <button type="submit">예측하기</button>
+            <button class="btn">LET'S PREDICT</button>
         </form>
     </div>
 </body>

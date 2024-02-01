@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             background: black url("{{ image_path }}") no-repeat center center fixed;
+            /* background: black url("../static/images/A_headon_shot_of_the_goalkeeper_in_front_of_the.jpg") no-repeat center center fixed; */
             background-size: contain;
             font-family: Arial, sans-serif;
             color: #ffffff;
@@ -27,7 +28,7 @@
             height: auto;
             animation: bulbAnimation 1s infinite;
             position: absolute;
-            top: calc(30% + 50px);
+            top: calc(30% + 100px);
             left: 65%;
             transform: translate(-50%, -50%);
         }
@@ -43,8 +44,8 @@
         @media (min-width: 1200px) {
             /* 화면 너비가 1200px 이상일 때 전구 크기 조절 */
             #bulb {
-                width: 6%;
-                top: calc(15% + 50px); /* 전구의 위치 조절 */
+                width: 10%;
+                top: calc(15% + 150px); /* 전구의 위치 조절 */
             }
         }
 
@@ -65,6 +66,7 @@
     <h2>모델이 예측한 결과를 통해 어디로 공이 향할지 예측중...</h2>
     <p></p>
     <img id="bulb" src="{{ url_for('static', filename='images/bulb.png') }}" alt="전구 이미지">
+    <!-- <img id="bulb" src="../static/images/bulb.png" alt="전구 이미지"> -->
 </div>
 
 <script>

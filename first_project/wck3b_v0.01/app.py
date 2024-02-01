@@ -4,6 +4,7 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 import os
+import random
 
 
 #Flask 객체 인스턴스 생성
@@ -11,8 +12,6 @@ app = Flask(__name__)
 # 세션 활성화
 app.secret_key = 'session_secret_keeeeeey'
 # 모델을 불러오거나 초기화
-# model = tf.keras.models.load_model(r"C:\Users\bluecom014\Downloads\wck3b_v0.01\static\model\keras_model.h5")
-# class_names = open(r"C:\Users\bluecom014\Downloads\wck3b_v0.01\static\model\labels.txt", "r").readlines()
 model = tf.keras.models.load_model('static/model/keras_model.h5')
 class_names = open('static/model/labels.txt', "r").readlines()
 
@@ -52,13 +51,21 @@ def predicting():
 def next_page():
     return render_template('next_page.html')
 
+final_page_image_paths = ['골먹힘좌절.png']
+
 @app.route('/final_page')
 def final_page():
-    return render_template('final_page.html')
+    random_image = random.choice(final_page_image_paths)
+    return render_template('final_page.html', random_image=random_image)
+    # return render_template('final_page.html')
 
 @app.route('/keeperprediction')
 def keeperprediction():
-    return render_template('keeperprediction.html')
+    result = session.get('result', {})
+    data = {"prediction" : result.get('prediction', {})}
+    print(data['prediction']['Class'].strip())
+    return render_template('keeperprediction.html', data = data)
+    # return render_template('keeperprediction.html')
 
 # @app.route('/animation')
 # def animation():
@@ -79,7 +86,6 @@ def predict():
 
     if file:
         # 업로드된 이미지 저장
-        #upload_folder = r'C:\Users\bluecom014\Downloads\wck3b_v0.01\static\uploads'
         upload_folder = 'static/uploads'
         file_path = os.path.join(upload_folder, file.filename)
         file.save(file_path)

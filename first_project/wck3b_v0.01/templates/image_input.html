@@ -4,20 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/soccer_goalpost.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;  /* 폰트 설정 (선택) */
+            color: #ffffff;  /* 텍스트 색상 설정 (선택) */
+            font-weight: bold;
+        }
+        #drop-area{
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            transition: border 0.3s ease-in-out;
+            height: 100px;
+        }
+
+        #file-input{
+            display: none;
+        }
+
+        .goalkeeper{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            height: 65%;
+        }
+
+        #drop-area.dragover {
+            border: 2px dashed yellow; /* 드래그 중일 때의 테두리 색상 */
+            background-color: gray;
+        }
+
+        .upload_btn {
+            margin-top: 2%;
+        }
+
+        .message{
+            font-size: 1.5em;
+        }
+
+        .btn{
+            margin-top: 0.5%;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border: 3px solid gold;
+            background-color: transparent;
+            color: gold;
+            letter-spacing: 5px;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+
+        .btn:focus{
+            outline: none;
+        }
+        
+        .btn::before{
+            content: "";
+            position: absolute;
+            height:100%;
+            width: 100%;
+            background-color: gold;
+            top: 100%;
+            left: 0;
+            transition: all 0.4s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateY(-100%);
+        }
+
+        .btn:hover{
+            color: blue
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Prediction</h1>
 
-    <div id="drop-area" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
-        <span>당신의 이미지를 올려주세요!</span>
-        <input type="file" id="file-input" accept=".jpg, .jpeg, .png" style="display: none;">
+    <div id="drop-area">
+        <span class="message">업로드할 이미지를 드래그하거나 파일 추가 버튼을 클릭하여 이미지를 업로드 하세요.</span>
+        <input type="file" id="file-input" accept=".jpg, .jpeg, .png">
+        <div><button class="btn" onclick="document.getElementById('file-input').click()">이미지 업로드</button></div>
     </div>
 
-    <div>
-        <img src="{{ url_for('static', filename='images/image_input.jpeg') }}" alt="Server Image">
+    <div class="goalkeeper">
+        <img src="{{ url_for('static', filename='images/막아봐라.png') }}">
     </div>
-
-    <!-- <div id="prediction-result" style="margin-top: 20px;"></div> -->
 
     <script>
         var dropArea = document.getElementById('drop-area');
@@ -30,6 +111,21 @@
             e.preventDefault();
             e.stopPropagation();
         }
+
+        // 드래그 중일 때 스타일 변경
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, function(e) {
+                dropArea.classList.add('dragover');
+                document.querySelector('.message').innerText = '파일을 여기에 드롭하세요!';
+                preventDefaults(e); // 기본 동작 중지
+            }, false);
+        });
+
+        // 드래그를 떠날 때 스타일 변경 및 메시지 출력
+        dropArea.addEventListener('dragleave', function() {
+            dropArea.classList.remove('dragover');
+            document.querySelector('.message').innerText = '업로드할 이미지를 드래그하거나 파일 추가 버튼을 클릭하여 이미지를 업로드 하세요.';
+        }, false);
 
         dropArea.addEventListener('drop', handleDrop, false);
 
@@ -53,14 +149,6 @@
             }
         }
 
-        // function previewImage(file) {
-        //     var reader = new FileReader();
-        //     reader.onload = function (e) {
-        //         dropArea.innerHTML = '<img src="' + e.target.result + '" style="max-width: 100%; max-height: 200px;">';
-        //     };
-        //     reader.readAsDataURL(file);
-        // }
-
         function uploadFile(file) {
             var formData = new FormData();
             formData.append('file', file);
@@ -71,9 +159,6 @@
             })
             .then(response => response.json())
             .then(data => {
-                // var resultDiv = document.getElementById('prediction-result');
-                // resultDiv.innerHTML = '<h2>Prediction Result:</h2>' +
-                //                       '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
                 if (data.redirect_url) {
                     window.location.href = data.redirect_url
                 }

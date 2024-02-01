@@ -12,11 +12,13 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
+            background: url("{{ url_for('static', filename='images/soccer_goalpost.jpg') }}") no-repeat center center fixed;
             align-items: center;
+            background-size: cover;
             flex-direction: column;
             height: 100vh;
-            background-color: black;
-            color: white;
+            /* background-color: black; */
+            color: yellow;
             position: relative;
         }
 
@@ -27,10 +29,24 @@
             text-align: center;
         }
 
-        #fullscreen-image {
-            width: 100%;
-            height: 100%;
+        #fullscreen-image-right {
+            width: 50%;
+            height: 50%;
             object-fit: cover;
+            margin: auto;
+            display: block;
+            margin-top: 10%;
+            margin-right: 10%;
+        }
+
+        #fullscreen-image-left {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+            margin: auto;
+            display: block;
+            margin-top: 10%;
+            margin-left: 10%;
         }
 
         #overlay-text {
@@ -45,7 +61,87 @@
             margin-top: 3px; /* 수정: 상단 여백을 추가합니다. */
             font-size: 24px;
             color: yellow;
+            font-size: bold;
         }
+
+        #selection-buttons {
+            margin-top: -5.5%;
+            display: flex;
+            justify-content: space-around;
+            height: 30vh;
+            
+        }
+
+        .selection-button{
+            border: 3px solid white;
+            cursor: pointer;
+            width: 50%;
+            height: 50%;
+            transition: .6s ease-in;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            font-size: 2em;
+            color: white;
+            letter-spacing: 5px;
+            background-color: transparent;
+        }
+
+        .selection-button:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20%;
+            width: 0;
+            height: 100%;
+            background-color: gold;
+            transform: skew(50deg);
+            z-index: -1;
+            transition: .6s ease-in;
+        }
+        .selection-button:hover:after{
+            width: 140%;
+        }
+        .selection-button:hover{
+            color:black;
+        }
+
+        .word_balloon_left {
+            position: absolute;
+            width: 20%;
+            height: 45%;
+            top: -30%;
+            left: 10%;
+        }
+
+        .word_balloon_right {
+            position: absolute;
+            width: 20%;
+            height: 45%;
+            top: -30%;
+            right: 10%;
+        }
+
+        .image-container-left {
+        position: relative;
+        margin: auto;
+        display: block;
+        }
+
+        .image-container-right {
+        position: relative;
+        margin: auto;
+        display: block;
+        }
+
+        #selection-message{
+            margin-top: -1%;
+            font-size: 3em;
+            color: white;
+            font-weight: bold;
+        }
+
+
     </style>
 </head>
 <body>
@@ -53,43 +149,46 @@
 <!-- 이미지와 텍스트를 함께 감싸는 컨테이너 -->
 <div id="image-container">
     <!-- "김삼백(모델 기반 골키퍼)의 예측" 텍스트를 표시 -->
-    <div id="overlay-text">김삼백(모델 기반 골키퍼)의 예측: <span id="prediction" style="color: cyan;"></span></div>
-
-    <!-- 모델의 예측값에 따라 사진1.jpg 또는 사진2.jpg를 전체화면으로 표시 -->
-    <img id="fullscreen-image" src="{{ url_for('static', filename='images/오른쪽점프.jpg') }}" alt="Fullscreen Image">
+    <!-- <div id="overlay-text">김삼백(모델 기반 골키퍼)의 예측: <span id="prediction" style="color: cyan;">{{ data['prediction']['Class'] }}</span></div> -->
+    <div id="selection-message">당신이 실제로 공을 찬 방향을 어디십니까??</div>
+    <!-- 모델의 예측값에 따라 이미지를 동적으로 출력 -->
+    {% if data['prediction']['Class'].strip() == "left" %}
+        <div class="image-container-left">
+            <div class="image-container-left">
+                <img id="fullscreen-image-left" src="{{ url_for('static', filename='images/goalkeeper_left.png') }}" alt="Fullscreen Image">
+                <img class = "word_balloon_left" src="/static/images/word_balloon.png" alt="">
+                <div class="word_balloon_left">
+                    <p style="color: black; font-size: 2em; margin-top: 20%; font-weight: bold;">왼쪽이다!!</p>
+                </div>
+            </div>
+        </div>
+    {% elif data['prediction']['Class'].strip() == "right" %}
+        <div class="image-container-right">
+            <div class="image-container-right">
+                <img id="fullscreen-image-right" src="{{ url_for('static', filename='images/goalkeeper_right.png') }}" alt="Fullscreen Image">
+                <img class = "word_balloon_right" src="/static/images/word_balloon_right.png" alt="">
+                <div class="word_balloon_right">
+                    <p style="color: black; font-size: 2em; margin-top: 20%; font-weight: bold;">오른쪽이다!!</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     
-    <!-- 하단 메시지 -->
-    <div id="bottom-message">김삼백은 키커의 자세를 통해 방향을 예측하고 먼저 다이빙하였다.</div>
+    <!-- 선택 버튼 -->
+    <!-- <div id="selection-message">당신이 실제로 공을 찬 방향을 어디십니까??</div> -->
+    <div id="selection-buttons">
+        <button class="selection-button" onclick="makeSelection('left')">LEFT</button>
+        <button class="selection-button" onclick="makeSelection('right')">RIGHT</button>
+    </div>
 </div>
 
 <script>
-    // 이미지 경로 설정
-    const imagePaths = [
-        "/static/images/왼쪽점프.jpg",
-        "/static/images/오른쪽점프.jpg"
-    ];
-
-    // 가상의 예측값 (0 또는 1)
-    const prediction = Math.round(Math.random());
-
-    // 예측값 텍스트 업데이트
-    document.getElementById("prediction").textContent = prediction;
-
-    // 선택된 이미지의 경로
-    const selectedImagePath = imagePaths[prediction];
-
-    // 이미지 엘리먼트 설정
-    const fullscreenImage = document.getElementById("fullscreen-image");
-    
-    // 이미지가 로드된 후에 src를 설정하도록 변경
-    fullscreenImage.onload = function() {
-        fullscreenImage.src = selectedImagePath;
-    };
-
-    // 3초 후에 다음 페이지로 이동
-    setTimeout(function() {
-        window.location.href = "/next_page";  // 여기에 다음 페이지의 경로를 지정하세요.
-    }, 3000);
+    // 버튼 클릭 시 처리 함수
+    function makeSelection(selection) {
+        // 여기에 선택에 따라 다음 페이지로 이동하는 로직 추가
+        // 예: window.location.href = "/next_page?selection=" + selection;
+        window.location.href = "/next_page"
+    }
 </script>
 
 </body>
