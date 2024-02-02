@@ -1,25 +1,120 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Your Report</title>
 
     <link rel="stylesheet" href="\static\css\report.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: white;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("{{ url_for('static', filename='images/san-siro-2430650_1920.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            filter: brightness(50%);  /* 어두운 효과를 조절할 수 있는 brightness 필터 추가 */
+        }
+
+        .content {
+            position: relative;
+            z-index: 1; /* 다른 요소들이 배경 사진 위에 나타나도록 z-index 설정 */
+        }
+
+        h1, button, img, p{
+            position: relative;
+            z-index: 2;
+        }
+        
+        .result_value{
+            margin-bottom: 10%;
+            z-index: 2;
+            top: 10%;
+        }
+        
+        .btn{
+            font-size: 35px;
+            padding: 15px 30px;
+            border: 3px solid gold;
+            background-color: transparent;
+            color: gold;
+            letter-spacing: 5px;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+            top: -5%;
+        }
+
+        .btn:focus{
+            outline: none;
+        }
+        
+        .btn::before{
+            content: "";
+            position: absolute;
+            height:100%;
+            width: 100%;
+            background-color: gold;
+            top: 100%;
+            left: 0;
+            transition: all 0.4s;
+            z-index: -1;
+            
+        }
+
+        .btn:hover::before {
+            transform: translateY(-100%);
+        }
+
+        .btn:hover{
+            color: blue
+        }
+
+        .btn a {
+            color: inherit;  /* 부모 요소의 글씨 색상을 상속 */
+            text-decoration: none;  /* 기본 밑줄 스타일 제거 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .btn:hover a {
+            color: blue;  /* 버튼에 호버되었을 때 글씨 색상 변경 */
+        }
+
+    </style>
 </head>
 <body>
     <h1>분석 페이지</h1>
+    <div style="display: flex; justify-content: space-between;">
+        <img class = "user-image" src="{{ user_image_path }}" alt="user Image">
+        <div style="font-size: 2em;">
+            <p class="result_value" style="margin-left:-100%">예측값: {{  data['prediction']['Class']  }}</p>
+        
+            <p class="result_value" , style="margin-top: 180%; margin-left:-100%">신뢰도: {{  data['prediction']['Confidence Score']  }}</p>
+        </div>
 
-    <div class="container">
-        <div class = "image-container">
-            <img class = "user-image" src="{{ user_image_path }}" alt="user Image">
-        </div>
-        <div class = "prediction-info">
-            <!-- 예측값과 신뢰도를 표시하는 부분 -->
-            <p>예측값: {{  data['prediction']['Class']  }}</p>
-            <p>신뢰도: {{  data['prediction']['Confidence Score']  }}</p>
-        </div>
+        
     </div>
-
-    <button><a href="{{ url_for('home')  }}">Home</a></button>
+    
+    <button class="btn"><a href="{{ url_for('home')  }}">Home</a></button>
 </body>
 </html>

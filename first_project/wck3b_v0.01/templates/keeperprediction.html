@@ -35,8 +35,8 @@
             object-fit: cover;
             margin: auto;
             display: block;
-            margin-top: 10%;
-            margin-right: 10%;
+            margin-top: 15vh;
+            margin-right: 10vw;
         }
 
         #fullscreen-image-left {
@@ -45,8 +45,8 @@
             object-fit: cover;
             margin: auto;
             display: block;
-            margin-top: 10%;
-            margin-left: 10%;
+            margin-top: 15vh;
+            margin-left: 10vw;
         }
 
         #overlay-text {
@@ -65,7 +65,7 @@
         }
 
         #selection-buttons {
-            margin-top: -5.5%;
+            margin-top: -7vh;
             display: flex;
             justify-content: space-around;
             height: 30vh;
@@ -108,18 +108,18 @@
 
         .word_balloon_left {
             position: absolute;
-            width: 20%;
-            height: 45%;
-            top: -30%;
-            left: 10%;
+            width: 19%;
+            height: 42%;
+            top: -15vh;
+            left: 10vw;
         }
 
         .word_balloon_right {
             position: absolute;
-            width: 20%;
-            height: 45%;
-            top: -30%;
-            right: 10%;
+            width: 19%;
+            height: 42%;
+            top: -15vh;
+            right: 10vw;
         }
 
         .image-container-left {
@@ -136,7 +136,7 @@
 
         #selection-message{
             margin-top: -1%;
-            font-size: 3em;
+            font-size: 2.5em;
             color: white;
             font-weight: bold;
         }
@@ -150,7 +150,7 @@
 <div id="image-container">
     <!-- "김삼백(모델 기반 골키퍼)의 예측" 텍스트를 표시 -->
     <!-- <div id="overlay-text">김삼백(모델 기반 골키퍼)의 예측: <span id="prediction" style="color: cyan;">{{ data['prediction']['Class'] }}</span></div> -->
-    <div id="selection-message">당신이 실제로 공을 찬 방향을 어디십니까??</div>
+    <div id="selection-message">실제 공 방향을 선택해주세요.</div>
     <!-- 모델의 예측값에 따라 이미지를 동적으로 출력 -->
     {% if data['prediction']['Class'].strip() == "left" %}
         <div class="image-container-left">
@@ -180,6 +180,8 @@
         <button class="selection-button" onclick="makeSelection('left')">LEFT</button>
         <button class="selection-button" onclick="makeSelection('right')">RIGHT</button>
     </div>
+
+    <div id="prediction" style="display: none;">{{ data['prediction']['Class'] }}</div>
 </div>
 
 <script>
@@ -187,9 +189,17 @@
     function makeSelection(selection) {
         // 여기에 선택에 따라 다음 페이지로 이동하는 로직 추가
         // 예: window.location.href = "/next_page?selection=" + selection;
-        window.location.href = "/next_page"
+        var modelPrediction = document.getElementById("prediction").textContent;
+        // 사용자의 선택과 모델의 예측값 비교 (소문자로 변환하여 비교)
+        if (selection.toLowerCase() === modelPrediction.trim().toLowerCase()) {
+            // 예측이 맞을 때, 다음 페이지로 이동
+            
+            window.location.href = "{{ url_for('next_page_correct') }}";
+        } else {
+            // 예측이 틀렸을 때, 다음 페이지로 이동
+            window.location.href = "{{ url_for('next_page_fail') }}";
     }
+}
 </script>
-
 </body>
 </html>

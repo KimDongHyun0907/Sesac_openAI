@@ -26,7 +26,15 @@ def preprocess_image(image):
     image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, 3)
     image = (image / 127.5) - 1
 
-    return image
+    # 이미지를 r,g,b 채널로 나누어 평균값으로 gray 채널 생성
+    image_r, image_g, image_b = image[:,:,:,0], image[:,:,:,1], image[:,:,:,2]
+    gray = np.asarray(((image_r + image_g + image_b)/3))
+
+    # 정규화 후 gray값으로 3채널로 복제
+    norm_gray = (gray / 127.5) - 1
+    gray_3ch = np.asarray([norm_gray, norm_gray, norm_gray], dtype=np.float32).reshape(1, 224,224, 3)
+
+    return gray_3ch
 
 # 대문 페이지
 @app.route('/')
@@ -47,9 +55,13 @@ def predicting():
 
 
 # 중간 애니메이션 페이지
-@app.route('/next_page')
-def next_page():
-    return render_template('next_page.html')
+@app.route('/next_page_correct')
+def next_page_correct():
+    return render_template('next_page_correct.html')
+
+@app.route('/next_page_fail')
+def next_page_fail():
+    return render_template('next_page_fail.html')
 
 final_page_image_paths = ['골먹힘좌절.png']
 
@@ -71,7 +83,13 @@ def keeperprediction():
 # def animation():
    
 #    return render_template('animation.html')
+@app.route('/correct')
+def correct():
+    return render_template('correct.html')
 
+@app.route('/wrong')
+def wrong():
+    return render_template('wrong.html')
 
 # 예측 페이지
 @app.route('/prediction', methods=['POST'])
