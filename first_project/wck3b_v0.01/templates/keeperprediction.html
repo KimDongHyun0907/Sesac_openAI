@@ -5,177 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keeper Prediction Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            background: url("{{ url_for('static', filename='images/soccer_goalpost.jpg') }}") no-repeat center center fixed;
-            align-items: center;
-            background-size: cover;
-            flex-direction: column;
-            height: 100vh;
-            /* background-color: black; */
-            color: yellow;
-            position: relative;
-        }
-
-        #image-container {
-            position: relative;
-            width: 100vw;
-            height: 80vh; /* 수정: 높이를 조절합니다. */
-            text-align: center;
-        }
-
-        #fullscreen-image-right {
-            width: 50%;
-            height: 50%;
-            object-fit: cover;
-            margin: auto;
-            display: block;
-            margin-top: 15vh;
-            margin-right: 10vw;
-        }
-
-        #fullscreen-image-left {
-            width: 50%;
-            height: 50%;
-            object-fit: cover;
-            margin: auto;
-            display: block;
-            margin-top: 15vh;
-            margin-left: 10vw;
-        }
-
-        #overlay-text {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 30px;
-            color: cyan;
-        }
-
-        #bottom-message {
-            margin-top: 3px; /* 수정: 상단 여백을 추가합니다. */
-            font-size: 24px;
-            color: yellow;
-            font-size: bold;
-        }
-
-        #selection-buttons {
-            margin-top: -7vh;
-            display: flex;
-            justify-content: space-around;
-            height: 30vh;
-            
-        }
-
-        .selection-button{
-            border: 3px solid white;
-            cursor: pointer;
-            width: 50%;
-            height: 50%;
-            transition: .6s ease-in;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            font-size: 2em;
-            color: white;
-            letter-spacing: 5px;
-            background-color: transparent;
-        }
-
-        .selection-button:after{
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -20%;
-            width: 0;
-            height: 100%;
-            background-color: gold;
-            transform: skew(50deg);
-            z-index: -1;
-            transition: .6s ease-in;
-        }
-        .selection-button:hover:after{
-            width: 140%;
-        }
-        .selection-button:hover{
-            color:black;
-        }
-
-        .word_balloon_left {
-            position: absolute;
-            width: 19%;
-            height: 42%;
-            top: -15vh;
-            left: 10vw;
-        }
-
-        .word_balloon_right {
-            position: absolute;
-            width: 19%;
-            height: 42%;
-            top: -15vh;
-            right: 10vw;
-        }
-
-        .image-container-left {
-        position: relative;
-        margin: auto;
-        display: block;
-        }
-
-        .image-container-right {
-        position: relative;
-        margin: auto;
-        display: block;
-        }
-
-        #selection-message{
-            margin-top: -1%;
-            font-size: 2.5em;
-            color: white;
-            font-weight: bold;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body>
+<body class="body_keeper">
 
 <!-- 이미지와 텍스트를 함께 감싸는 컨테이너 -->
 <div id="image-container">
     <!-- "김삼백(모델 기반 골키퍼)의 예측" 텍스트를 표시 -->
-    <!-- <div id="overlay-text">김삼백(모델 기반 골키퍼)의 예측: <span id="prediction" style="color: cyan;">{{ data['prediction']['Class'] }}</span></div> -->
     <div id="selection-message">실제 공 방향을 선택해주세요.</div>
     <!-- 모델의 예측값에 따라 이미지를 동적으로 출력 -->
     {% if data['prediction']['Class'].strip() == "left" %}
         <div class="image-container-left">
-            <div class="image-container-left">
-                <img id="fullscreen-image-left" src="{{ url_for('static', filename='images/goalkeeper_left.png') }}" alt="Fullscreen Image">
-                <img class = "word_balloon_left" src="/static/images/word_balloon.png" alt="">
-                <div class="word_balloon_left">
-                    <p style="color: black; font-size: 2em; margin-top: 20%; font-weight: bold;">왼쪽이다!!</p>
-                </div>
+            <img id="fullscreen-image-left" src="{{ url_for('static', filename='images/goalkeeper_left.png') }}" alt="Fullscreen Image">
+            <img class = "word_balloon_left" src="/static/images/word_balloon.png" alt="">
+            <div class="word_balloon_left">
+                <p class="keeper_saying">왼쪽이다!!</p>
             </div>
         </div>
     {% elif data['prediction']['Class'].strip() == "right" %}
         <div class="image-container-right">
-            <div class="image-container-right">
-                <img id="fullscreen-image-right" src="{{ url_for('static', filename='images/goalkeeper_right.png') }}" alt="Fullscreen Image">
-                <img class = "word_balloon_right" src="/static/images/word_balloon_right.png" alt="">
-                <div class="word_balloon_right">
-                    <p style="color: black; font-size: 2em; margin-top: 20%; font-weight: bold;">오른쪽이다!!</p>
-                </div>
+            <img id="fullscreen-image-right" src="{{ url_for('static', filename='images/goalkeeper_right.png') }}" alt="Fullscreen Image">
+            <img class = "word_balloon_right" src="/static/images/word_balloon_right.png" alt="">
+            <div class="word_balloon_right">
+                <p class="keeper_saying">오른쪽이다!!</p>
             </div>
         </div>
     {% endif %}
     
     <!-- 선택 버튼 -->
-    <!-- <div id="selection-message">당신이 실제로 공을 찬 방향을 어디십니까??</div> -->
     <div id="selection-buttons">
         <button class="selection-button" onclick="makeSelection('left')">LEFT</button>
         <button class="selection-button" onclick="makeSelection('right')">RIGHT</button>
@@ -183,23 +40,6 @@
 
     <div id="prediction" style="display: none;">{{ data['prediction']['Class'] }}</div>
 </div>
-
-<script>
-    // 버튼 클릭 시 처리 함수
-    function makeSelection(selection) {
-        // 여기에 선택에 따라 다음 페이지로 이동하는 로직 추가
-        // 예: window.location.href = "/next_page?selection=" + selection;
-        var modelPrediction = document.getElementById("prediction").textContent;
-        // 사용자의 선택과 모델의 예측값 비교 (소문자로 변환하여 비교)
-        if (selection.toLowerCase() === modelPrediction.trim().toLowerCase()) {
-            // 예측이 맞을 때, 다음 페이지로 이동
-            
-            window.location.href = "{{ url_for('next_page_correct') }}";
-        } else {
-            // 예측이 틀렸을 때, 다음 페이지로 이동
-            window.location.href = "{{ url_for('next_page_fail') }}";
-    }
-}
-</script>
+<script src="../static/js/keeperprediction.js"></script>
 </body>
 </html>

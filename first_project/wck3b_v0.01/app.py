@@ -1,11 +1,9 @@
 # app.py
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, url_for
 import tensorflow as tf
 from PIL import Image
 import numpy as np
 import os
-import random
-
 
 #Flask 객체 인스턴스 생성
 app = Flask(__name__)
@@ -36,7 +34,7 @@ def preprocess_image(image):
 
     return gray_3ch
 
-# 대문 페이지
+# 메인(Home) 페이지
 @app.route('/')
 def home():
   return render_template('index.html')
@@ -44,54 +42,44 @@ def home():
 # 이미지 업로드 페이지
 @app.route('/image_input')
 def image_input():
-#   server_image_path = 'static/images/image_input.jpeg'
     return render_template('image_input.html')
 
+# 업로드 후 결과가 나오기 전까지 loading 페이지
 @app.route('/predict')
 def predicting():
     # 여기에 결과 페이지에 보여줄 이미지 경로를 전달하는 로직을 추가할 수 있습니다.
-    image_path = url_for('static', filename='images/A_headon_shot_of_the_goalkeeper_in_front_of_the.jpg')
-    return render_template('predicting.html', image_path=image_path)
+    return render_template('predicting.html')
 
-
-# 중간 애니메이션 페이지
-@app.route('/next_page_correct')
-def next_page_correct():
-    return render_template('next_page_correct.html')
-
-@app.route('/next_page_fail')
-def next_page_fail():
-    return render_template('next_page_fail.html')
-
-final_page_image_paths = ['골먹힘좌절.png']
-
-@app.route('/final_page')
-def final_page():
-    random_image = random.choice(final_page_image_paths)
-    return render_template('final_page.html', random_image=random_image)
-    # return render_template('final_page.html')
-
+# 모델의 예측 방향과 실제 공의 방향을 사용자가 선택하는 페이지
 @app.route('/keeperprediction')
 def keeperprediction():
     result = session.get('result', {})
     data = {"prediction" : result.get('prediction', {})}
     print(data['prediction']['Class'].strip())
+    print(data['prediction']['Confidence Score'])
     return render_template('keeperprediction.html', data = data)
-    # return render_template('keeperprediction.html')
 
-# @app.route('/animation')
-# def animation():
-   
-#    return render_template('animation.html')
+# 중간 애니메이션 페이지 (실제 공 방향과 예측 방향이 맞음)
+@app.route('/next_page_correct')
+def next_page_correct():
+    return render_template('next_page_correct.html')
+
+# 중간 애니메이션 페이지 (실제 공 방향과 예측 방향이 틀림)
+@app.route('/next_page_fail')
+def next_page_fail():
+    return render_template('next_page_fail.html')
+
+# 예측 성공 페이지
 @app.route('/correct')
 def correct():
     return render_template('correct.html')
 
+# 예측 실패 페이지
 @app.route('/wrong')
 def wrong():
     return render_template('wrong.html')
 
-# 예측 페이지
+# 모델의 예측값 가져오기 (Class와 예측 퍼센트)
 @app.route('/prediction', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -118,7 +106,6 @@ def predict():
         confidence_score = predictions[0][index]
 
         # 예측 결과를 result 변수에 저장하고, 페이지 전환
-        # result = {'prediction': predictions.tolist()}
         result = {
             "redirect_url": '/predict',
             "file_name": file.filename,

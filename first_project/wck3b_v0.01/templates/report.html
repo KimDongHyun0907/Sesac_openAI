@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Your Report</title>
-
-    <link rel="stylesheet" href="\static\css\report.css">
-
     <style>
+
+        /* 이미지 컨테이너의 스타일링 */
+        /* body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        } */
+        .container {
+            display: flex;
+        }
+
+        .image-container {
+            position: relative; /* 상대적 위치 설정 */
+            width: 100vw; /* 원하는 너비로 설정 */
+            height: 100vh; /* 원하는 높이로 설정 */
+            border: 2px solid #ccc; /* 테두리 스타일 */
+            overflow: hidden; /* 내용이 넘치면 숨기기 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 이미지의 스타일링 */
+        .user-image {
+            width: 65%; 
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* 가로세로 비율 유지하며 부모 요소 가득 채우기 */
+        }
+
+        /* 예측값 및 신뢰도의 스타일링 */
+        .prediction-info {
+            position: relative; /* 상대적 위치 설정 */
+            /*background-color: rgba(255, 255, 255, 0.8);* /* 투명한 배경색 설정 */
+            width: 50vw; /* 부모 요소의 100% 크기로 설정 */
+            padding: 10px; /* 내부 여백 설정 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -50,7 +89,7 @@
         
         .btn{
             font-size: 35px;
-            padding: 15px 30px;
+            padding: 10px 30px;
             border: 3px solid gold;
             background-color: transparent;
             color: gold;
@@ -104,17 +143,26 @@
 </head>
 <body>
     <h1>분석 페이지</h1>
-    <div style="display: flex; justify-content: space-between;">
+    <!-- <div style="display: flex;">
         <img class = "user-image" src="{{ user_image_path }}" alt="user Image">
         <div style="font-size: 2em;">
-            <p class="result_value" style="margin-left:-100%">예측값: {{  data['prediction']['Class']  }}</p>
+            <p class="result_value">예측값: {{  data['prediction']['Class']  }}</p>
         
-            <p class="result_value" , style="margin-top: 180%; margin-left:-100%">신뢰도: {{  data['prediction']['Confidence Score']  }}</p>
-        </div>
+            <p class="result_value">신뢰도: {{  data['prediction']['Confidence Score']  }}</p>
+        </div> 
+    </div> -->
 
-        
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: -1%; margin-top: -1%;">
+        <img class="user-image" src="{{ user_image_path }}" alt="user Image">
+        <div style="font-size: 2em;">
+            <p class="result_value">예측값: {{ data['prediction']['Class'] }}</p>
+            <p class="result_value">신뢰도: {{ data['prediction']['Confidence Score'] }}</p>
+        </div>
     </div>
     
-    <button class="btn"><a href="{{ url_for('home')  }}">Home</a></button>
+    <form action="{{ url_for('home') }}" method="get">
+        <button class="btn">HOME</button>
+    </form>
+    <!-- <button class="btn"><a href="{{ url_for('home') }}">Home</a></button> -->
 </body>
 </html>

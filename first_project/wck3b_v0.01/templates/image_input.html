@@ -4,167 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Prediction</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: url("{{ url_for('static', filename='images/soccer_goalpost.jpg') }}") no-repeat center center fixed;
-            background-size: cover;
-            font-family: Arial, sans-serif;  /* 폰트 설정 (선택) */
-            color: #ffffff;  /* 텍스트 색상 설정 (선택) */
-            font-weight: bold;
-        }
-        #drop-area{
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            transition: border 0.3s ease-in-out;
-            height: 100px;
-        }
-
-        #file-input{
-            display: none;
-        }
-
-        .goalkeeper{
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            height: 65%;
-        }
-
-        #drop-area.dragover {
-            border: 2px dashed yellow; /* 드래그 중일 때의 테두리 색상 */
-            background-color: gray;
-        }
-
-        .upload_btn {
-            margin-top: 2%;
-        }
-
-        .message{
-            font-size: 1.5em;
-        }
-
-        .btn{
-            margin-top: 0.5%;
-            font-size: 1.5em;
-            padding: 15px 30px;
-            border: 3px solid gold;
-            background-color: transparent;
-            color: gold;
-            letter-spacing: 5px;
-            font-weight: bold;
-            position: relative;
-            transition: all 0.4s;
-            overflow: hidden;
-        }
-
-        .btn:focus{
-            outline: none;
-        }
-        
-        .btn::before{
-            content: "";
-            position: absolute;
-            height:100%;
-            width: 100%;
-            background-color: gold;
-            top: 100%;
-            left: 0;
-            transition: all 0.4s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            transform: translateY(-100%);
-        }
-
-        .btn:hover{
-            color: blue
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body>
+<body class="body_image_input">
 
     <div id="drop-area">
         <span class="message">업로드할 이미지를 드래그하거나 파일 추가 버튼을 클릭하여 이미지를 업로드 하세요.</span>
         <input type="file" id="file-input" accept=".jpg, .jpeg, .png">
-        <div><button class="btn" onclick="document.getElementById('file-input').click()">이미지 업로드</button></div>
+        <div><button class="btn_image_input" onclick="document.getElementById('file-input').click()">이미지 업로드</button></div>
     </div>
 
     <div class="goalkeeper">
         <img src="{{ url_for('static', filename='images/막아봐라.png') }}">
     </div>
 
-    <script>
-        var dropArea = document.getElementById('drop-area');
-
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, preventDefaults, false);
-        });
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        // 드래그 중일 때 스타일 변경
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, function(e) {
-                dropArea.classList.add('dragover');
-                document.querySelector('.message').innerText = '파일을 여기에 드롭하세요!';
-                preventDefaults(e); // 기본 동작 중지
-            }, false);
-        });
-
-        // 드래그를 떠날 때 스타일 변경 및 메시지 출력
-        dropArea.addEventListener('dragleave', function() {
-            dropArea.classList.remove('dragover');
-            document.querySelector('.message').innerText = '업로드할 이미지를 드래그하거나 파일 추가 버튼을 클릭하여 이미지를 업로드 하세요.';
-        }, false);
-
-        dropArea.addEventListener('drop', handleDrop, false);
-
-        function handleDrop(e) {
-            var dt = e.dataTransfer;
-            var files = dt.files;
-
-            handleFiles(files);
-        }
-
-        document.getElementById('file-input').addEventListener('change', function() {
-            handleFiles(this.files);
-        });
-
-        function handleFiles(files) {
-            var file = files[0];
-
-            if (file) {
-                // previewImage(file);
-                uploadFile(file);
-            }
-        }
-
-        function uploadFile(file) {
-            var formData = new FormData();
-            formData.append('file', file);
-
-            fetch('/prediction', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.redirect_url) {
-                    window.location.href = data.redirect_url
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
+    <script src="../static/js/image_input.js"></script>
 </body>
 </html>
