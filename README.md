@@ -23,3 +23,6 @@
 20일차 (1/23) - [Flask 실습, SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/flask)  
 21일차 (1/24) - [SQL](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/SQL)  
 22일차 (1/25) - [SQLite](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/HTML/SQLite)  
+
+### 1차 프로젝트
+23일차 ~ 29일차 (1/26 ~ 2/5) - [월클 김삼백](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/first_project)  
