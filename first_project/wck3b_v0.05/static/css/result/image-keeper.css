@@ -1,0 +1,21 @@
+.image-keeper {
+    position: relative;
+    margin: auto;
+    display: block;
+    }
+
+#success {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    left: 35%;
+    margin-top: 5%;
+}
+
+#fail {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    left: 35%;
+    margin-top: 10%;
+}

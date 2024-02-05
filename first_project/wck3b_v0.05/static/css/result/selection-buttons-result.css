@@ -1,0 +1,8 @@
+@import "selection-button-result.css";
+
+#selection-buttons-result {
+    margin-top: 68vh;
+    display: flex;
+    justify-content: space-around;
+    height: 30vh;
+}

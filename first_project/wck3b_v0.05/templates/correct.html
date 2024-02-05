@@ -1,0 +1,29 @@
+<!-- next_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success page</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="body_result">
+
+<!-- 이미지와 텍스트를 함께 감싸는 컨테이너 -->
+<div id="image-container-result">
+    <div id="selection-message-result">김삼백 그저 빛!!</div>   
+    <div class="image-keeper">
+        <img id="success" src="{{ url_for('static', filename='images/success.png') }}" alt="Fullscreen Image">
+    </div>
+    
+    <!-- 선택 버튼 -->
+    <div id="selection-buttons-result">
+        <button class="selection-button-result" onclick="goToPage('{{ url_for('home')}}')">HOME</button>
+        <button class="selection-button-result" onclick="goToPage('{{ url_for('report')}}')">REPORT</button>
+    </div>
+</div>
+
+<script src="../static/js/result.js"></script>
+
+</body>
+</html>

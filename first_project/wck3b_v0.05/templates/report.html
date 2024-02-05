@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Report</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="body_report">
+    <h1 class="element_pos">분석 페이지</h1>
+
+    <div class="report_container">
+        <img class="user-image element_pos" src="{{ user_image_path }}" alt="user Image">
+        <div class="value_container">
+            <p class="result_value element_pos">예측값: {{ data['prediction']['Class'] }}</p>
+            <p class="result_value element_pos">신뢰도: {{ data['prediction']['Confidence Score'] }}</p>
+        </div>
+    </div>
+    
+    <form action="{{ url_for('home') }}" method="get">
+        <button class="btn_report element_pos">HOME</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@import "user-image.css";
+@import "value_container.css";
+
+.report_container {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: -1%; 
+    margin-top: -1%;
+}

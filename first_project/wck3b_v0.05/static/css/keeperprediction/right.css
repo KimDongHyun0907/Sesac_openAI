@@ -1,0 +1,23 @@
+.image-container-right {
+    position: relative;
+    margin: auto;
+    display: block;
+}
+
+#fullscreen-image-right {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+    margin-top: 15vh;
+    margin-right: 10vw;
+}
+
+.word_balloon_right {
+    position: absolute;
+    width: 19%;
+    height: 42%;
+    top: -15vh;
+    right: 10vw;
+}

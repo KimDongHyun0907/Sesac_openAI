@@ -1,0 +1,8 @@
+.title_logo{
+    width: 25%;
+    display: inline-block;
+    padding-right: 10%;
+    padding-top: 20%;
+    position: relative;
+    z-index: 1;
+}

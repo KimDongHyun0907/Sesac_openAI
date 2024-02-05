@@ -1,0 +1,45 @@
+<!-- next_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keeper Prediction Page</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body class="body_keeper">
+
+<!-- 이미지와 텍스트를 함께 감싸는 컨테이너 -->
+<div id="image-container">
+    <!-- "김삼백(모델 기반 골키퍼)의 예측" 텍스트를 표시 -->
+    <div id="selection-message">실제 공 방향을 선택해주세요.</div>
+    <!-- 모델의 예측값에 따라 이미지를 동적으로 출력 -->
+    {% if data['prediction']['Class'].strip() == "left" %}
+        <div class="image-container-left">
+            <img id="fullscreen-image-left" src="{{ url_for('static', filename='images/goalkeeper_left.png') }}" alt="Fullscreen Image">
+            <img class = "word_balloon_left" src="/static/images/word_balloon.png" alt="">
+            <div class="word_balloon_left">
+                <p class="keeper_saying">왼쪽이다!!</p>
+            </div>
+        </div>
+    {% elif data['prediction']['Class'].strip() == "right" %}
+        <div class="image-container-right">
+            <img id="fullscreen-image-right" src="{{ url_for('static', filename='images/goalkeeper_right.png') }}" alt="Fullscreen Image">
+            <img class = "word_balloon_right" src="/static/images/word_balloon_right.png" alt="">
+            <div class="word_balloon_right">
+                <p class="keeper_saying">오른쪽이다!!</p>
+            </div>
+        </div>
+    {% endif %}
+    
+    <!-- 선택 버튼 -->
+    <div id="selection-buttons">
+        <button class="selection-button" onclick="makeSelection('left')">LEFT</button>
+        <button class="selection-button" onclick="makeSelection('right')">RIGHT</button>
+    </div>
+
+    <div id="prediction" style="display: none;">{{ data['prediction']['Class'] }}</div>
+</div>
+<script src="../static/js/keeperprediction.js"></script>
+</body>
+</html>

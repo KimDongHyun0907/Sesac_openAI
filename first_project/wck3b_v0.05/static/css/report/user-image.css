@@ -1,0 +1,8 @@
+/* 이미지의 스타일링 */
+.user-image {
+    width: 65%; 
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 가로세로 비율 유지하며 부모 요소 가득 채우기 */
+}

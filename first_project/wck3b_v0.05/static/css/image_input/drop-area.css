@@ -1,0 +1,16 @@
+@import "message.css";
+@import "file-input.css";
+@import "btn.css";
+
+#drop-area{
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    transition: border 0.3s ease-in-out;
+    height: 100px;
+}
+
+#drop-area.dragover {
+    border: 2px dashed yellow; /* 드래그 중일 때의 테두리 색상 */
+    background-color: gray;
+}

@@ -1,0 +1,28 @@
+@import "element_pos.css";
+@import "report_container.css";
+@import "btn_report.css";
+
+.body_report {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+    position: relative;
+}
+
+.body_report::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/san-siro-2430650_1920.jpg") no-repeat center center fixed;
+    background-size: cover;
+    filter: brightness(50%);  /* 어두운 효과를 조절할 수 있는 brightness 필터 추가 */
+}

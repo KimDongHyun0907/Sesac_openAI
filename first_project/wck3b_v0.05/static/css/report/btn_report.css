@@ -1,0 +1,51 @@
+.btn_report{
+    font-size: 35px;
+    padding: 10px 30px;
+    border: 3px solid gold;
+    background-color: transparent;
+    color: gold;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+    top: -5%;
+}
+
+.btn_report:focus{
+    outline: none;
+}
+
+.btn_report::before{
+    content: "";
+    position: absolute;
+    height:100%;
+    width: 100%;
+    background-color: gold;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+    
+}
+
+.btn_report:hover::before {
+    transform: translateY(-100%);
+}
+
+.btn_report:hover{
+    color: blue
+}
+
+.btn_report a {
+    color: inherit;  /* 부모 요소의 글씨 색상을 상속 */
+    text-decoration: none;  /* 기본 밑줄 스타일 제거 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.btn_report:hover a {
+    color: blue;  /* 버튼에 호버되었을 때 글씨 색상 변경 */
+}
