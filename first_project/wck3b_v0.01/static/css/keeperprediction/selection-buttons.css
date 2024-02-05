@@ -1,8 +1,0 @@
-@import "selection-button.css";
-
-#selection-buttons {
-    margin-top: -7vh;
-    display: flex;
-    justify-content: space-around;
-    height: 30vh;
-}

@@ -1,9 +1,0 @@
-@import "selection-message.css";
-@import "selection-buttons.css";
-
-#image-container {
-    position: relative;
-    width: 100vw;
-    height: 80vh; /* 수정: 높이를 조절합니다. */
-    text-align: center;
-}
