@@ -26,3 +26,7 @@
 
 ### 1차 프로젝트
 23일차 ~ 29일차 (1/26 ~ 2/5) - [월클 김삼백](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/first_project)  
+
+### 데이터 사이언스
+29일차 (2/5) - [형태소 분석](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/%ED%98%95%ED%83%9C%EC%86%8C%20%EB%B6%84%EC%84%9D%EA%B8%B0)  
+30일차 (2/6) - [자연어 처리 - 영화 리뷰 분석](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC)  
