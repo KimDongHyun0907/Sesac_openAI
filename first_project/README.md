@@ -1,3 +1,5 @@
+![image](https://github.com/KimDongHyun0907/Sesac_openAI/assets/88826811/b7509679-8489-486c-9354-3026c188cf68)
+
 ## 프로젝트 : 월클 김삼백
 ### 팀명 : 손흥민 황희찬 김삼백 Let's Go
 
