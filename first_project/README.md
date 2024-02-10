@@ -2,6 +2,7 @@
 
 ## 프로젝트 : 월클 김삼백
 ### 팀명 : 손흥민 황희찬 김삼백 Let's Go
+### 기간 : 1/19 ~ 2/6 [일정 세부 내용](https://github.com/KimDongHyun0907/Sesac_openAI/blob/main/first_project/developing_process.md)
 
 ### Why 월클 김삼백
 - 축구는 세계적으로 가장 사랑받는 스포츠이다.
@@ -63,4 +64,26 @@
 - Flow Chart - 페이지 구성 및 작동 방식
   - ![image](https://github.com/KimDongHyun0907/Sesac_openAI/assets/88826811/8f6cf490-0971-4b22-a7fd-5bf04388e81d)
 
+### 시연 영상
+https://github.com/KimDongHyun0907/Sesac_openAI/assets/88826811/ffd3a419-e3c4-4917-845c-98a0967dcef9  
+
+### 기술 한계 및 추후 발전
+- Teachable Machine 학습
+  - 전처리된 모든 데이터를 학습시킬 수 없었다.
+  - 모델 수정이 불가하여 성능을 향상시킬 수 없었다.
+- 시도 방식
+  - 단순히 차기 직전의 사진만으로 학습하여 공의 방향을 예측을 시도했다는 단순한 시도 방식
+- 성능 개선
+  - 사용자들이 업로드 해주는 Data를 통해 추가 학습하여 성능 개선을 기대해 볼 수 있음.
+- 게시판 기능
+  - 사용자가 본인들의 멋진 슛 자세를 게시하여 다른 사용자들과 소통 및 자랑하는 게시판으로의 역할 가능
+
+### 출저
+- 통계, 기사
+  - https://www.aaastateofplay.com/the-most-popular-sport-in-every-country/
+  - https://www.joongang.co.kr/article/25187559#home
+  - https://www.careet.net/1098
+- 웹 페이지 이미지 출저
+  - https://pixabay.com/ko/
+  - https://www.flaticon.com/kr/
 
