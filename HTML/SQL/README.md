@@ -31,3 +31,21 @@ https://school.programmers.co.kr/learn/challenges?order=recent&languages=mysql
 - ORDER BY : 결과를 정렬. DESC는 내림차순으로 정렬
 - GROUP BY : 특정 열을 기준으로 그룹화된 결과를 얻기 위해 사용
 - HAVING : GROUP BY와 함께 사용되어 그룹화된 결과에 조건을 적용.
+
+### JOIN
+- 둘 이상의 테이블에서 데이터를 결합하여 하나의 결과 집합으로 만드는데 사용되는 연산.
+- INNER JOIN
+  - 두 테이블 간의 교집합 반환.
+- LEFT JOIN
+  - 왼쪽 테이블의 모든 행과 오른쪽 테이블의 매칭되는 행을 반환
+- RIGHT JOIN
+  - 오른쪽 테이블의 모든 행과 왼쪽 테이블의 매칭되는 행을 반환
+- FULL OUTER JOIN
+  - 양쪽 테이블의 모든 행을 반환.
+  - 매칭되는 행이 없는 경우에도 결과에 포함.
+
+### 이상 현상
+- 데이터베이스에서 발생하는 비정상적인 동작 또는 결과
+- 삽입 이상 (Insertion Anomaly)
+  - 데이터를 삽입하는 과정에서 발생
+  - 부분적으로 완성된 데이터로 인해 해당 테이블에 값을 삽입할 수 없는 
