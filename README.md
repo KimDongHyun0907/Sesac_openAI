@@ -32,4 +32,6 @@
 30일차 (2/6) - [자연어 처리 - 영화 리뷰 분석](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC)  
 31일차 (2/7) - [TF-IDF](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/TF-IDF)  
 32일차 (2/8) - [연관성 분석](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/%EC%97%B0%EA%B4%80%EC%84%B1%20%EB%B6%84%EC%84%9D)  
+
+### 딥러닝 모델 및 전이학습
 33일차 (2/13) - [딥러닝 모델](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8)  
