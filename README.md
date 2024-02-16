@@ -35,3 +35,5 @@
 
 ### 딥러닝 모델 및 전이학습
 33일차 (2/13) - [딥러닝 모델](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8)  
+34일차 (2/14) - [활성화 함수](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%ED%99%9C%EC%84%B1%ED%99%94%20%ED%95%A8%EC%88%98)  
+35일차 (2/15) - [CNN](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/CNN), [전이학습](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5)  
