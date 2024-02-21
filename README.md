@@ -39,3 +39,6 @@
 35일차 (2/15) - [CNN](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/CNN), [전이학습](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5)  
 36일차 (2/16) - [분류 리포트](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EB%B6%84%EB%A5%98%EB%A6%AC%ED%8F%AC%ED%8A%B8), [전이학습(fine tunning)](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/fine_tunning)  
 37일차 (2/19) - [전이학습 이미지 분류 과제 프로젝트](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/%EB%94%A5%EB%9F%AC%EB%8B%9D%20%EB%AA%A8%EB%8D%B8%20%EB%B0%8F%20%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5/fine_tunning_animals)  
+
+### DevOps 특강
+38일차 (2/20) - [Docker](https://github.com/KimDongHyun0907/cicd-practice)  
