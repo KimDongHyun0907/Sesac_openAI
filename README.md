@@ -47,3 +47,5 @@
 ### AI 모델 구현
 39일차 (2/21) - [옵티마이저, 멀티레이블, 오토인코더](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/%EB%A9%80%ED%8B%B0%EB%A0%88%EC%9D%B4%EB%B8%94)  
 40일차 (2/22) - [Pytorch](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/pytorch)  
+41일차 (2/23) - [hugging face]  
+42일차 (2/26) - [모듈](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/%EB%AA%A8%EB%93%88), [RNN](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/RNN)  
