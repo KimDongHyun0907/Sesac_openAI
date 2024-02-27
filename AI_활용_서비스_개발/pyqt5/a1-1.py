@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 from module import menu
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
 class MyApp(QWidget):
@@ -28,7 +29,8 @@ class MyApp(QWidget):
 
         self.label_image = QLabel(self)  # 이미지를 표시할 라벨 생성
         self.label_image.setGeometry(50, 150, 700, 700)  # 라벨의 위치와 크기 설정
-        
+        self.label_image.setAlignment(Qt.AlignHCenter)  # 이미지를 중앙 정렬로 설정
+
         self.show()
 
     def showImage(self):
@@ -36,7 +38,7 @@ class MyApp(QWidget):
         image_path = 'pic1.png'
         pixmap = QPixmap(image_path)  # QPixmap을 사용하여 이미지 로드
         self.label_image.setPixmap(pixmap)  # 라벨에 이미지 표시
-        
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
