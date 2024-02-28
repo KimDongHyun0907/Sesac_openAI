@@ -49,3 +49,7 @@
 40일차 (2/22) - [Pytorch](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/pytorch)  
 41일차 (2/23) - [hugging face]  
 42일차 (2/26) - [모듈](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/%EB%AA%A8%EB%93%88), [RNN](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI%20%EB%AA%A8%EB%8D%B8%20%EA%B5%AC%ED%98%84/RNN)  
+
+## AI 활용 서비스 개발
+43일차 (2/27) - [PYQT5](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C)  
+44일차 (2/28) - [YOLO](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C/yolo)  
