@@ -53,3 +53,4 @@
 ## AI 활용 서비스 개발
 43일차 (2/27) - [PYQT5](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C)  
 44일차 (2/28) - [YOLO](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C/yolo)  
+45일차 (2/29) - [YOLO_object_detection_project](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C/object_detection_project)  
