@@ -1,4 +1,5 @@
 ## YOLOv5를 이용한 차량 객체 탐지
+프로젝트에 대한 설명 [클릭](https://github.com/KimDongHyun0907/Sesac_openAI/blob/main/AI_%ED%99%9C%EC%9A%A9_%EC%84%9C%EB%B9%84%EC%8A%A4_%EA%B0%9C%EB%B0%9C/object_detection_project/yolo_project.pdf)
 
 원본 영상  
 
