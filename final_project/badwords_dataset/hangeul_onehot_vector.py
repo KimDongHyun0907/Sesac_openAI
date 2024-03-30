@@ -68,7 +68,9 @@ def make_input_vector(text):
                     cnt += 1
                     
             else:  # 한글이 아닌 경우 (특수문자, 영어)
-                if words[0] == ' ':  # 띄어쓰기인 경우
+                if words[0] not in word_vector_list:  # word_vector_list에 없는 특수문자는 제외
+                    pass
+                elif words[0] == ' ':  # 띄어쓰기인 경우
                     input_vector[cnt][word_vector_idx_dict[words[0]][1]]=1
                 else:  # 특수문자, 영어인 경우
                     input_vector[cnt][word_vector_idx_dict[words[0]][0]]=1
