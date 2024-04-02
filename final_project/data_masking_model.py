@@ -10,6 +10,10 @@ from tqdm import tqdm
 import pickle
 import gzip
 
+# GPU 사용 가능 여부 확인
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(device)
+
 with gzip.open('Xdata.pickle', 'rb') as f:
     X_data = pickle.load(f)
 
@@ -25,14 +29,14 @@ class YourDataset(Dataset):
     def __init__(self, X_data, y_data):
         self.X_data = X_data
         self.y_data = y_data
-        
+
     def __len__(self):
         return len(self.X_data)
-    
+
     def __getitem__(self, index):
         X = self.X_data[index]
         y = self.y_data[index]
-        
+
         return X, y
 
 # 데이터를 훈련 세트와 검증 세트로 나눔
@@ -42,11 +46,11 @@ batch_size = 8
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=6, stride=2, padding=(95,451))
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=6)
         self.pool = nn.MaxPool2d(kernel_size=3)
-        self.conv2 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=9, stride=2, padding=(155,431))
-        self.conv3 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=12, stride = 2, padding=(145,432))
-        self.fc1 = nn.Linear(batch_size*56*170, 1024)
+        self.conv2 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=9, padding=5)
+        self.conv3 = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=12)
+        self.fc1 = nn.Linear(3, 1024)
         self.fc2 = nn.Linear(1024, 1024)
         self.fc3 = nn.Linear(1024, 1)
         self.dropout = nn.Dropout(p=0.5)  # Dropout 추가
@@ -55,7 +59,7 @@ class CNN(nn.Module):
         x = self.pool(torch.relu(self.conv1(x)))
         x = self.pool(torch.relu(self.conv2(x)))
         x = self.pool(torch.relu(self.conv3(x)))
-        x = torch.flatten(x)  # Flatten
+        x = torch.flatten(x, 1)  # Flatten
         x = torch.relu(self.fc1(x))
         x = self.dropout(x)  # Dropout
         x = torch.relu(self.fc2(x))
@@ -64,7 +68,7 @@ class CNN(nn.Module):
         return x
 
 # 모델 인스턴스 생성
-model = CNN()
+model = CNN().to(device)
 
 # Loss function 및 Optimizer 정의
 criterion = nn.BCELoss()  # Binary Cross Entropy Loss
@@ -86,7 +90,7 @@ model_save_path = 'best_model.pth'
 best_accuracy = 0.0
 
 # 모델 학습
-num_epochs = 10
+num_epochs = 100
 for epoch in range(num_epochs):
     model.train()  # 모델을 학습 모드로 설정
     running_loss = 0.0
@@ -94,15 +98,15 @@ for epoch in range(num_epochs):
 
     for inputs, labels in tqdm_train_loader:  # DataLoader에서 배치 단위로 데이터 로드
         optimizer.zero_grad()  # gradient 초기화
-        inputs = inputs.float()
+        inputs = inputs.float().to(device)
+        labels = labels.float().to(device)
         outputs = model(inputs).float()  # 모델 예측
-        outputs = outputs.expand(*(batch_size, 1))
         loss = criterion(outputs.to(torch.float32), labels.to(torch.float32))  # 손실 계산
         loss.backward()  # 역전파
         optimizer.step()  # 옵티마이저 업데이트
         running_loss += loss.item() * inputs.size(0)
         tqdm_train_loader.set_postfix({'loss': running_loss / ((tqdm_train_loader.n + 1) * inputs.size(0))})  # tqdm 업데이트
-    
+
     scheduler.step()  # Learning rate 스케줄링
 
     # 현재 epoch의 평균 손실 출력
@@ -115,6 +119,9 @@ for epoch in range(num_epochs):
     total = 0
     with torch.no_grad():  # 평가 과정에서는 gradient를 계산하지 않음
         for inputs, labels in val_loader:  # 검증 데이터 로드
+            # print(inputs.shape())
+            inputs = inputs.float().to(device)
+            labels = labels.float().to(device)
             outputs = model(inputs)  # 모델 예측
             predicted = (outputs >= 0.5).float()  # 확률을 이진 분류로 변환
             total += labels.size(0)
