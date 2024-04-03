@@ -57,3 +57,7 @@
 
 ## 2차 프로젝트
 48일차 ~ 56일차 (3/6 ~ 3/19) - [Deep dive into tabular]  
+
+## 최종 프로젝트
+3/20 ~ 4/18 - [final project - EZPT](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/final_project)  
+4/3 - [3월 Test](https://github.com/KimDongHyun0907/Sesac_openAI/tree/main/3%EC%9B%94%20%ED%85%8C%EC%8A%A4%ED%8A%B8)  
