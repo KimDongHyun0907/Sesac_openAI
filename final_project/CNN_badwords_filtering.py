@@ -168,7 +168,7 @@ def cnn_trainer(X, y, epochs, batch_size, model_path=None):
         if val_accuracy > best_accuracy:
             best_accuracy = val_accuracy
             best_model = model
-            torch.save(best_model, f'best_model.pth')
+            torch.save(best_model, f'best_filtering_model.pth')
             print('Best model saved!')
     print('Best model Accuracy == ', best_accuracy)
 
