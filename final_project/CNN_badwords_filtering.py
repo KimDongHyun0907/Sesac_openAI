@@ -26,15 +26,10 @@ class TextCNNDataset(Dataset):
         dat = self.data.iloc[idx]
         dat = np.array(dat)
         dat = dat.astype('float32')
-        dat = np.array(dat, dtype='float32')
         label = self.labels.iloc[idx]
 
         if self.transform:
             dat = self.transform(dat)
-
-        # 데이터와 레이블을 PyTorch Tensor로 변환
-        dat = torch.tensor(dat)
-        label = torch.tensor(label, dtype=torch.long)  # 레이블은 일반적으로 long 타입을 사용
 
         return dat, label
 
@@ -42,21 +37,25 @@ class TextCNNDataset(Dataset):
 class TextCNN(nn.Module):
     def __init__(self):
         super(TextCNN, self).__init__()
-        self.conv1 = nn.Conv2d(1, 64, (6, 1), padding=(2,0))
+        self.conv1 = nn.Conv2d(1, 64, (6, 127), padding=(2,0))
         self.conv2 = nn.Conv2d(64, 128, (9, 1), padding=(4,0))
         self.conv3 = nn.Conv2d(128, 256, (12, 1), padding=(6,0))
-        self.fc1 = nn.Linear(7168, 1024)
+        self.conv4 = nn.Conv2d(256, 512, (15, 1), padding=(8,0))
+        self.conv5 = nn.Conv2d(512, 1024, (18, 1), padding=(10,0))
+        self.fc1 = nn.Linear(2048, 1024)
         self.fc2 = nn.Linear(1024, 512)
         self.fc3 = nn.Linear(512, 256)
         self.fc4 = nn.Linear(256, 128)
         self.fc5 = nn.Linear(128, 64)
-        self.fc6 = nn.Linear(64, 3)
+        self.fc6 = nn.Linear(64, 2)
         self.dropout = nn.Dropout(0.2)
         
     def forward(self, x):
-        x = F.max_pool2d(F.relu(self.conv1(x)), (3, 3))
-        x = F.max_pool2d(F.relu(self.conv2(x)), (3, 3))
-        x = F.max_pool2d(F.relu(self.conv3(x)), (3, 3))
+        x = F.max_pool2d(F.relu(self.conv1(x)), (3, 1))
+        x = F.max_pool2d(F.relu(self.conv2(x)), (3, 1))
+        x = F.max_pool2d(F.relu(self.conv3(x)), (3, 1))
+        x = F.max_pool2d(F.relu(self.conv4(x)), (3, 1))
+        x = F.max_pool2d(F.relu(self.conv5(x)), (3, 1))
         x = torch.flatten(x, 1)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
@@ -252,6 +251,6 @@ if __name__ == '__main__':
 
     data = Xtest
     label = ytest
-    model = 'best_model.pth'
+    model = 'best_filtering_model.pth'
     
     cnn_tester(data, label, model)
